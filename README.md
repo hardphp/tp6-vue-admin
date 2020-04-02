@@ -7,6 +7,9 @@
 体验地址:http://www.hardphp.com/backend/index.html 
 账号admini，密码123456 即可。
 
+说明文档
+https://mp.weixin.qq.com/mp/homepage?__biz=MzUyNzI3OTQ2Nw==&hid=1&sn=6f734454a69c4cc3f8a28b9ed6f0e786&scene=126&clicktime=1585844155
+
 ```
 QQ交流群 :488148501
 微信交流群：（由于群二维码有效期太短，加我微信，拉你入群,备注tp5-vue）
