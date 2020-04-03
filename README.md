@@ -4,6 +4,7 @@
 ##注意2：env 环境配置文件VUE_APP_BASE_API 接口地址，生产环境 需改变自己项目真是路径
 ##注意3：开发环境接口地址在 vue.config.js 设置代理proxy，转到http://127.0.0.1/index.php ，解决跨域问题
 ##注意3：如果只运行vue-admin前端，则可以把代理转到http://www.hardphp.com/index.php，先在本地跑起项目，在接口规则和动态路由，进行修改，适配自己的接口规则
+##注意4：如果开发遇到问题或需定制修改，可以向群友求助。
 
 
 基于thinkphp6主要提供接口数据，实现功能主要包括：代码分层（model-->repository-->service-->middleware-->validate-->controller），接口规则，权限认证，文件上传（本地和阿里云），增删改查封装。主要使用thinkphp6的单应用模式，注解路由，中间件，事件，门面，服务等。
