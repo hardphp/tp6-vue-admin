@@ -1,0 +1,2 @@
+# thinkphp-snowflake
+基于snowflake算法生成全局唯一且趋势递增的ID

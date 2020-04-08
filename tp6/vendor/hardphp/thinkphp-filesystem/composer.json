@@ -1,0 +1,25 @@
+{
+    "name": "hardphp/thinkphp-filesystem",
+    "description": "thinkphp6.0 filesystem,include Local Aliyun Qiniu Qcloud",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.1.0",
+        "topthink/framework": "^6.0.0",
+        "league/flysystem": "^1.0.49",
+        "aliyuncs/oss-sdk-php": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "hardphp\\filesystem\\": "src/"
+        }
+    },
+    "extra": {
+        "think": {
+            "services": [
+                "hardphp\\filesystem\\Service"
+            ]
+        }
+    }
+}
