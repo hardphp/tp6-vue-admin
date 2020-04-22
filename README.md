@@ -2,9 +2,9 @@
 
 #注意1：vue-admin 中接口请求规则和动态路由，是对应tp6 中的接口规则和权限规则，需同时安装tp6和vue-admin 才能运行项目
 
-#注意2：env 环境配置文件VUE_APP_BASE_API 接口地址，生产环境 需改变自己项目真是路径
+#注意2：env 环境配置文件VUE_APP_BASE_API 接口地址，生产环境 或开发环境，需改变自己项目真实路径
 
-#注意3：开发环境接口地址在 vue.config.js 设置代理proxy，转到http://127.0.0.1/index.php ，解决跨域问题
+#注意3：开发环境，如果使用代理，解决跨域问题，接口地址在  vue.config.js 设置代理proxy，转到http://127.0.0.1/index.php ，.env.development中的VUE_APP_BASE_API 设置空即可。
 
 #注意3：如果只运行vue-admin前端，则可以把代理转到http://www.hardphp.com/index.php，先在本地跑起项目，在接口规则和动态路由，进行修改，适配自己的接口规则
 
