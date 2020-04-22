@@ -1,5 +1,11 @@
 #thinkphp6+vue2.6+element2.13 前后端分离落地解决方案
 
+本人开发环境版本信息：
+npm=6.13.4
+vue =@vue/cli 4.1.2
+node=v12.14.1
+
+
 #注意1：vue-admin 中接口请求规则和动态路由，是对应tp6 中的接口规则和权限规则，需同时安装tp6和vue-admin 才能运行项目
 
 #注意2：env 环境配置文件VUE_APP_BASE_API 接口地址，生产环境 或开发环境，需改变自己项目真实路径
