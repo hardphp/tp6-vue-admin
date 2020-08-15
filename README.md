@@ -12,9 +12,11 @@ node=v12.14.1
 
 #注意3：开发环境，如果使用代理，解决跨域问题，接口地址在  vue.config.js 设置代理proxy，转到http://127.0.0.1/index.php ，.env.development中的VUE_APP_BASE_API 设置空即可。
 
-#注意3：如果只运行vue-admin前端，则可以把代理转到http://www.hardphp.com/index.php，先在本地跑起项目，在接口规则和动态路由，进行修改，适配自己的接口规则
+#注意4：如果只运行vue-admin前端，则可以把代理转到http://www.hardphp.com/index.php，先在本地跑起项目，在接口规则和动态路由，进行修改，适配自己的接口规则
 
-#注意4：如果开发遇到问题或需定制修改，可以向群友求助。
+#注意5：登录验证码，使用组件对think-captcha 进行修改，适用于前后端分离项目，composer require hardphp/think-captcha 进行安装，验证码存储基于redis，所以使用时确保redis服务可用
+
+#注意6：如果开发遇到问题或需定制修改，可以向群友求助。
 
 
 基于thinkphp6主要提供接口数据，实现功能主要包括：代码分层（model-->repository-->service-->middleware-->validate-->controller），接口规则，权限认证，文件上传（本地和阿里云），增删改查封装。主要使用thinkphp6的单应用模式，注解路由，中间件，事件，门面，服务等。
