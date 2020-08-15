@@ -11,10 +11,10 @@
     ],
     "require": {
         "php": ">=7.0",
-        "composer-plugin-api": "^1.0"
+        "composer-plugin-api": "^1.0 || ^2.0"
     },
     "require-dev": {
-        "composer/composer": "^1.0",
+        "composer/composer": "^1.0 || ^2.0",
         "phpunit/phpunit": "^6.5 || ^7.0"
     },
     "autoload": {

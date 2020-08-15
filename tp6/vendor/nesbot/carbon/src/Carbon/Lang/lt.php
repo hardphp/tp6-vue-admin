@@ -83,8 +83,11 @@ return [
     'day_of_first_week_of_year' => 4,
 
     'diff_now' => 'ką tik',
+    'diff_today' => 'Šiandien',
     'diff_yesterday' => 'vakar',
+    'diff_yesterday_regexp' => 'Vakar',
     'diff_tomorrow' => 'rytoj',
+    'diff_tomorrow_regexp' => 'Rytoj',
     'diff_before_yesterday' => 'užvakar',
     'diff_after_tomorrow' => 'poryt',
 
@@ -93,7 +96,9 @@ return [
     'period_start_date' => 'nuo :date',
     'period_end_date' => 'iki :date',
 
-    'months' => ['sausis', 'vasaris', 'kovas', 'balandis', 'gegužė', 'birželis', 'liepa', 'rugpjūtis', 'rugsėjis', 'spalis', 'lapkritis', 'gruodis'],
+    'months' => ['sausio', 'vasario', 'kovo', 'balandžio', 'gegužės', 'birželio', 'liepos', 'rugpjūčio', 'rugsėjo', 'spalio', 'lapkričio', 'gruodžio'],
+    'months_standalone' => ['sausis', 'vasaris', 'kovas', 'balandis', 'gegužė', 'birželis', 'liepa', 'rugpjūtis', 'rugsėjis', 'spalis', 'lapkritis', 'gruodis'],
+    'months_regexp' => '/(L{2,4}|D[oD]?(\[[^\[\]]*\]|\s)+MMMM?|MMMM?(\[[^\[\]]*\]|\s)+D[oD]?)/',
     'months_short' => ['sau', 'vas', 'kov', 'bal', 'geg', 'bir', 'lie', 'rgp', 'rgs', 'spa', 'lap', 'gru'],
     'weekdays' => ['sekmadienį', 'pirmadienį', 'antradienį', 'trečiadienį', 'ketvirtadienį', 'penktadienį', 'šeštadienį'],
     'weekdays_standalone' => ['sekmadienis', 'pirmadienis', 'antradienis', 'trečiadienis', 'ketvirtadienis', 'penktadienis', 'šeštadienis'],

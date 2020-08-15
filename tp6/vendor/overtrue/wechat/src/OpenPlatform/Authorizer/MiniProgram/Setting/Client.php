@@ -150,7 +150,9 @@ class Client extends BaseClient
         $params = ['nick_name' => $nickname];
 
         return $this->httpPostJson(
-            'cgi-bin/wxverify/checkwxverifynickname', $params);
+            'cgi-bin/wxverify/checkwxverifynickname',
+            $params
+        );
     }
 
     /**
@@ -229,9 +231,6 @@ class Client extends BaseClient
 
     /**
      * 获取可以用来设置的公众号列表.
-     *
-     * @param int $page
-     * @param int $num
      *
      * @return array|\EasyWeChat\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      *

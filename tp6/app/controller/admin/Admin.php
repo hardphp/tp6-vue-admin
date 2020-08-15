@@ -35,7 +35,7 @@ class Admin extends Base
     use ControllerTrait;
 
     /**
-     * 获取登录用户信息
+     * 获取登录用户信息,菜单支持三级
      * @Route("getuser", method="POST")
      */
     public function getuser()
@@ -59,7 +59,11 @@ class Admin extends Base
         foreach ($rules as $v) {
             $temp = $this->getdata($v);
             foreach ($v['children'] as $vo) {
-                $temp['children'][] = $this->getdata($vo);
+                $temp2=$this->getdata($vo);
+                foreach ($vo['children'] as $vv){
+                    $temp2['children'][]=$this->getdata($vv);
+                }
+                $temp['children'][] = $temp2;
             }
             $routers[] = $temp;
         }
@@ -130,6 +134,8 @@ class Admin extends Base
     //保存前置处理
     public function beforeSave($id)
     {
+		
+		$id = input('id', '0', 'int');
         //接收数据
         $data = [
             'id'         => $id,
@@ -153,5 +159,40 @@ class Admin extends Base
         }
 
         return $data;
+    }
+
+    /**
+     * 修改
+     * @Route("modify", method="POST")
+     */
+    public function modify()
+    {
+        //接收数据
+        $data = [
+            'realname'   => input('realname', '', 'trim'),
+            'img'        => input('img', '', 'trim'),
+            'phone'      => input('phone', '', 'trim'),
+            'email'      => input('email', '', 'trim'),
+            'password'   => input('password', '', 'trim'),
+        ];
+
+        if ($data['password']) {
+            $data['password'] = encrypt_pass($data['password']);
+        } else {
+            unset($data['password']);
+        }
+        $validate = validate(self::$validateName);
+        $result = $validate->scene('modify')->check($data);
+        if (!$result) {
+            $error = $validate->getError();
+            return json_error($error);
+        }
+
+        $res = self::$service::save($data, $this->user->id);
+        if ($res == false) {
+            return json_error(10005);
+        } else {
+            return json_ok(['id' => strval($res)], 10006);
+        }
     }
 }

@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+5.1.0
+-----
+
+ * added max-items + LRU + max-lifetime capabilities to `ArrayCache`
+ * added `CouchbaseBucketAdapter`
+ * added context `cache-adapter` to log messages
+
 5.0.0
 -----
 
@@ -20,6 +27,7 @@ CHANGELOG
  * removed support for phpredis 4 `compression`
  * [BC BREAK] `RedisTagAwareAdapter` is not compatible with `RedisCluster` from `Predis` anymore, use `phpredis` instead
  * Marked the `CacheDataCollector` class as `@final`.
+ * added `SodiumMarshaller` to encrypt/decrypt values using libsodium
 
 4.3.0
 -----

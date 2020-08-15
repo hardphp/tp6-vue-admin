@@ -51,11 +51,12 @@ final class CachedReader implements Reader
     private $loadedAnnotations = [];
 
     /**
-     * Constructor.
-     *
-     * @param Reader $reader
-     * @param Cache  $cache
-     * @param bool   $debug
+     * @var int[]
+     */
+    private $loadedFilemtimes = [];
+
+    /**
+     * @param bool $debug
      */
     public function __construct(Reader $reader, Cache $cache, $debug = false)
     {
@@ -173,13 +174,13 @@ final class CachedReader implements Reader
     public function clearLoadedAnnotations()
     {
         $this->loadedAnnotations = [];
+        $this->loadedFilemtimes = [];
     }
 
     /**
      * Fetches a value from the cache.
      *
-     * @param string          $cacheKey The cache key.
-     * @param ReflectionClass $class    The related class.
+     * @param string $cacheKey The cache key.
      *
      * @return mixed The cached value or false when the value is not in cache.
      */
@@ -213,14 +214,14 @@ final class CachedReader implements Reader
     /**
      * Checks if the cache is fresh.
      *
-     * @param string           $cacheKey
-     * @param ReflectionClass $class
+     * @param string $cacheKey
      *
      * @return boolean
      */
     private function isCacheFresh($cacheKey, ReflectionClass $class)
     {
-        if (null === $lastModification = $this->getLastModification($class)) {
+        $lastModification = $this->getLastModification($class);
+        if ($lastModification === 0) {
             return true;
         }
 
@@ -230,33 +231,48 @@ final class CachedReader implements Reader
     /**
      * Returns the time the class was last modified, testing traits and parents
      *
-     * @param ReflectionClass $class
      * @return int
      */
     private function getLastModification(ReflectionClass $class)
     {
         $filename = $class->getFileName();
+
+        if (isset($this->loadedFilemtimes[$filename])) {
+            return $this->loadedFilemtimes[$filename];
+        }
+
         $parent   = $class->getParentClass();
 
-        return max(array_merge(
+        $lastModification =  max(array_merge(
             [$filename ? filemtime($filename) : 0],
             array_map([$this, 'getTraitLastModificationTime'], $class->getTraits()),
             array_map([$this, 'getLastModification'], $class->getInterfaces()),
             $parent ? [$this->getLastModification($parent)] : []
         ));
+
+        assert($lastModification !== false);
+
+        return $this->loadedFilemtimes[$filename] = $lastModification;
     }
 
     /**
-     * @param ReflectionClass $reflectionTrait
      * @return int
      */
     private function getTraitLastModificationTime(ReflectionClass $reflectionTrait)
     {
         $fileName = $reflectionTrait->getFileName();
 
-        return max(array_merge(
+        if (isset($this->loadedFilemtimes[$fileName])) {
+            return $this->loadedFilemtimes[$fileName];
+        }
+
+        $lastModificationTime = max(array_merge(
             [$fileName ? filemtime($fileName) : 0],
             array_map([$this, 'getTraitLastModificationTime'], $reflectionTrait->getTraits())
         ));
+
+        assert($lastModificationTime !== false);
+
+        return $this->loadedFilemtimes[$fileName] = $lastModificationTime;
     }
 }

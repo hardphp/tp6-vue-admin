@@ -73,11 +73,6 @@
           <span class="link-type" @click="handleUpdate(scope.$index,scope.row.id)">{{ scope.row.name }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="栏目" width="150px" align="center">
-        <template slot-scope="scope">
-          <span>{{ scope.row.column_id }}</span>
-        </template>
-      </el-table-column>
       <el-table-column label="状态" width="110px" align="center">
         <template slot-scope="scope">
           <span :class="{'el-icon-success text-green':scope.row.status == 1,'el-icon-error text-red':scope.row.status == 0}" @click="handleModifyStatus(scope.$index,scope.row.id,scope.row.status)">{{ scope.row.status | statusFilter }}</span>
@@ -101,7 +96,7 @@
     </div>
 
     <!-- 表单 -->
-    <categeryForm ref="fromCategery" @updateRow="updateRow" />
+    <cdetailForm ref="fromDetail" @updateRow="updateRow" />
 
   </div>
 </template>
@@ -111,11 +106,11 @@ import { getList, del, change, delAll, changeAll } from '@/api/categery'
 import waves from '@/directive/waves'
 // eslint-disable-next-line no-unused-vars
 import { getArrByKey } from '@/utils'
-import categeryForm from './categery/form'
+import cdetailForm from './categery/form'
 
 export default {
   name: 'Categery',
-  components: { categeryForm },
+  components: { cdetailForm },
   directives: {
     waves
   },
@@ -182,6 +177,7 @@ export default {
     },
     handleModifyStatus(index, id, status) {
       this.list[index]['status'] = 1 - status
+      // eslint-disable-next-line no-unused-vars
       change(id, 'status', 1 - status).then(response => {})
     },
     handleSelectionChange(val) {
@@ -193,11 +189,11 @@ export default {
       this.selectedRows = val
     },
     handleCreate() {
-      this.$refs.fromCategery.handleCreate()
+      this.$refs.fromDetail.handleCreate()
     },
     handleUpdate(index, id) {
       this.currentIndex = index
-      this.$refs.fromCategery.handleUpdate(id)
+      this.$refs.fromDetail.handleUpdate(id)
     },
     updateRow(temp) {
       if (this.currentIndex >= 0 && temp.id > 0) {
@@ -228,7 +224,7 @@ export default {
             _this.$notify.error(response.msg)
           }
           _this.$set(_this.list[index], 'delete', false)
-        // eslint-disable-next-line handle-callback-err
+        // eslint-disable-next-line no-unused-vars
         }).catch((error) => {
           _this.$set(_this.list[index], 'delete', false)
         })
@@ -253,6 +249,7 @@ export default {
           delAll({ ids: idstr }).then(response => {
             if (response.status === 1) {
               const delindex = []
+              // eslint-disable-next-line no-unused-vars
               _this.list.forEach(function(item, index, input) {
                 if (ids.indexOf(item.id) > -1) {
                   delindex.push(index)
@@ -267,7 +264,7 @@ export default {
               _this.$message.error(response.msg)
             }
             _this.deleting = false
-          // eslint-disable-next-line handle-callback-err
+          // eslint-disable-next-line no-unused-vars
           }).catch((error) => {
             _this.deleting = false
           })
@@ -288,6 +285,7 @@ export default {
         const idstr = ids.join(',')
         changeAll({ val: idstr, field: 'status', value: command }).then(response => {
           if (response.status === 1) {
+            // eslint-disable-next-line no-unused-vars
             _this.list.forEach(function(item, index, input) {
               if (ids.indexOf(item.id) > -1) {
                 _this.list[index]['status'] = command
@@ -297,7 +295,7 @@ export default {
           } else {
             _this.$message.error(response.msg)
           }
-        // eslint-disable-next-line handle-callback-err
+        // eslint-disable-next-line no-unused-vars
         }).catch((error) => {
         })
       } else {

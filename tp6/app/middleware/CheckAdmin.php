@@ -42,7 +42,7 @@ class CheckAdmin
 
         //是否多设备登录
         if (!empty($user['login_time']) && $user['login_time'] != $payload->login_time) {
-            throw new \app\MyException(11103);
+            //throw new \app\MyException(11103);
         }
         //认证：状态
         if ($user['is_enabled'] != true) {

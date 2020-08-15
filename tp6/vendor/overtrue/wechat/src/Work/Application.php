@@ -29,7 +29,7 @@ use EasyWeChat\Work\MiniProgram\Application as MiniProgram;
  * @property \EasyWeChat\Work\Message\Messenger                $messenger
  * @property \EasyWeChat\Work\User\Client                      $user
  * @property \EasyWeChat\Work\User\TagClient                   $tag
- * @property \EasyWeChat\Work\Server\ServiceProvider           $server
+ * @property \EasyWeChat\Work\Server\Guard                     $server
  * @property \EasyWeChat\Work\Jssdk\Client                     $jssdk
  * @property \Overtrue\Socialite\Providers\WeWorkProvider      $oauth
  * @property \EasyWeChat\Work\Invoice\Client                   $invoice
@@ -83,8 +83,6 @@ class Application extends ServiceContainer
 
     /**
      * Creates the miniProgram application.
-     *
-     * @return \EasyWeChat\Work\MiniProgram\Application
      */
     public function miniProgram(): MiniProgram
     {

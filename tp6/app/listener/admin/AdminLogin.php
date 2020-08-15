@@ -4,6 +4,7 @@ declare (strict_types=1);
 namespace app\listener\admin;
 
 use app\service\AdminService;
+use app\service\LoginLogService;
 
 /**
  * 用户登录事件
@@ -22,5 +23,12 @@ class AdminLogin
     {
         list($user, $group, $time) = $event;
         AdminService::save(['login_time' => $time], $user['id']);
+        LoginLogService::save([
+            'uid'        => $user['id'],
+            'username'   => $user['username'],
+            'roles'      => $group['title'],
+            'login_time' => $time,
+            'login_ip'   => request()->ip()
+        ]);
     }
 }

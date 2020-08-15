@@ -40,7 +40,8 @@ class Admin extends Validate
 
     //验证场景
     protected $scene = [
-        'save' => ['username', 'group_id', 'phone', 'email'],
+        'save'   => ['username', 'group_id', 'phone', 'email'],
+        'modify' => ['phone', 'email'],
     ];
 
 

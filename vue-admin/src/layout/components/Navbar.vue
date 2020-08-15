@@ -7,8 +7,6 @@
     <div class="right-menu">
       <template v-if="device!=='mobile'">
 
-        <error-log class="errLog-container right-menu-item hover-effect" />
-
         <screenfull id="screenfull" class="right-menu-item hover-effect" />
 
         <el-tooltip content="Global Size" effect="dark" placement="bottom">
@@ -17,21 +15,14 @@
 
       </template>
 
-      <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
+      <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="hover" @command="handleCommand">
         <div class="avatar-wrapper">
           <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
-        <el-dropdown-menu slot="dropdown">
-          <router-link to="/manage/info">
-            <el-dropdown-item>我的</el-dropdown-item>
-          </router-link>
-          <router-link to="/">
-            <el-dropdown-item>首页</el-dropdown-item>
-          </router-link>
-          <el-dropdown-item divided>
-            <span style="display:block;" @click="logout">退出</span>
-          </el-dropdown-item>
+        <el-dropdown-menu slot="dropdown" >
+            <el-dropdown-item icon="el-icon-user-solid" command="gome">我的</el-dropdown-item>
+            <el-dropdown-item divided icon="el-icon-circle-close" command="logout">退出</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -42,7 +33,6 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-import ErrorLog from '@/components/ErrorLog'
 import Screenfull from '@/components/Screenfull'
 import SizeSelect from '@/components/SizeSelect'
 
@@ -50,7 +40,6 @@ export default {
   components: {
     Breadcrumb,
     Hamburger,
-    ErrorLog,
     Screenfull,
     SizeSelect
   },
@@ -65,10 +54,14 @@ export default {
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },
-    async logout() {
-      await this.$store.dispatch('user/logout')
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
-    }
+     async handleCommand(command) {
+        if(command=='logout'){
+          await this.$store.dispatch('user/logout')
+          this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+        }else if(command=='gome'){
+          this.$router.push(`/manage/info`)
+        }
+      }
   }
 }
 </script>

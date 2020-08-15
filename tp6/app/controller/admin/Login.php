@@ -27,6 +27,8 @@ class Login extends BaseController
         $data = [
             'username' => input('username', '', 'trim'),
             'password' => input('password', '', 'trim'),
+            'code'     => input('code', '', 'trim'),
+            'key'      => input('key', '', 'trim')
         ];
         if (empty($data['username'])) {
             return json_error(12007);
@@ -34,6 +36,18 @@ class Login extends BaseController
         if (empty($data['password'])) {
             return json_error(12008);
         }
+
+        if (empty($data['code'])) {
+            return json_error(11109);
+        }
+        if (empty($data['key'])) {
+            return json_error(10004);
+        }
+        //验证码验证
+        if (!captcha_check($data['key'], $data['code'])) {
+            return json_error(11110);
+        }
+
         // 登录验证并获取包含访问令牌的用户
         $result = AdminService::login($data['username'], $data['password']);
         return json_ok($result, 11108);

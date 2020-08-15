@@ -63,7 +63,7 @@ class Html
         }
 
         $base = [
-            '请求信息' => date('Y-m-d H:i:s', $request->time()) . ' ' . $uri,
+            '请求信息' => date('Y-m-d H:i:s', $request->time() ?: time()) . ' ' . $uri,
             '运行时间' => number_format((float) $runtime, 6) . 's [ 吞吐率：' . $reqs . 'req/s ] 内存消耗：' . $mem . 'kb 文件加载：' . count(get_included_files()),
             '查询信息' => $app->db->getQueryTimes() . ' queries',
             '缓存信息' => $app->cache->getReadTimes() . ' reads,' . $app->cache->getWriteTimes() . ' writes',

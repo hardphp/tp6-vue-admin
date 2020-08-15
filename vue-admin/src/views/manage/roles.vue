@@ -96,7 +96,7 @@
     </div>
 
     <!-- 表单 -->
-    <rolesForm ref="fromRoles" @updateRow="updateRow" />
+    <detailForm ref="fromDetail" @updateRow="updateRow" />
 
   </div>
 </template>
@@ -105,11 +105,11 @@
 import { getList, del, change, delAll, changeAll } from '@/api/roles'
 import waves from '@/directive/waves'
 import { pickerOptions, getArrByKey } from '@/utils'
-import rolesForm from './roles/form'
+import detailForm from './roles/form'
 
 export default {
   name: 'Roles',
-  components: { rolesForm },
+  components: { detailForm },
   directives: {
     waves
   },
@@ -190,11 +190,11 @@ export default {
       this.selectedRows = val
     },
     handleCreate() {
-      this.$refs.fromRoles.handleCreate()
+      this.$refs.fromDetail.handleCreate()
     },
     handleUpdate(index, id) {
       this.currentIndex = index
-      this.$refs.fromRoles.handleUpdate(id)
+      this.$refs.fromDetail.handleUpdate(id)
     },
     updateRow(temp) {
       if (this.currentIndex >= 0 && temp.id > 0) {

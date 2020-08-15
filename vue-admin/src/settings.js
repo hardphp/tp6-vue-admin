@@ -11,7 +11,7 @@ module.exports = {
 
   // 上传路径
   uploadUrl: {
-    img: 'http://127.0.0.1/index.php/admin/upload/upimg',
+    img: '/admin/upload/upimg',
     video: '',
     file: ''
   },
@@ -43,11 +43,4 @@ module.exports = {
    */
   sidebarLogo: true,
 
-  /**
-   * @type {string | array} 'production' | ['production', 'development']
-   * @description Need show err logs component.
-   * The default is only used in the production env
-   * If you want to also use it in dev, you can pass ['production', 'development']
-   */
-  errorLog: 'production'
 }

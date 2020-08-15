@@ -50,7 +50,6 @@ export default {
       },
       config: {
         fileName: 'img',
-        limit: 1,
         multiple: true,
         accept: 'image/*',
         action: myconfig.uploadUrl.img

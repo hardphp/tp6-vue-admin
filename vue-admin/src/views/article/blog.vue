@@ -10,9 +10,6 @@
           <el-input v-model="listQuery.cate_id" placeholder="分类" clearable size="small" />
         </el-form-item>
         <el-form-item label="">
-          <el-input v-model="listQuery.column_id" placeholder="栏目" clearable size="small" />
-        </el-form-item>
-        <el-form-item label="">
           <el-select v-model="listQuery.status" placeholder="状态" clearable size="small">
             <el-option label="全部" value="-1" />
             <el-option label="正常" value="1" />
@@ -87,11 +84,6 @@
           <span>{{ scope.row.cate_id }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="栏目" width="110px" align="center">
-        <template slot-scope="scope">
-          <span>{{ scope.row.column_id }}</span>
-        </template>
-      </el-table-column>
       <el-table-column label="状态" width="110px" align="center">
         <template slot-scope="scope">
           <span :class="{'el-icon-success text-green':scope.row.status == 1,'el-icon-error text-red':scope.row.status == 0}" @click="handleModifyStatus(scope.$index,scope.row.id,scope.row.status)">{{ scope.row.status | statusFilter }}</span>
@@ -120,7 +112,7 @@
     </div>
 
     <!-- 表单 -->
-    <blogForm ref="fromBlog" @updateRow="updateRow" />
+    <detailForm ref="fromDetail" @updateRow="updateRow" />
 
   </div>
 </template>
@@ -129,13 +121,13 @@
 import { getList, del, change, delAll, changeAll } from '@/api/blog'
 import waves from '@/directive/waves'
 // eslint-disable-next-line no-unused-vars
-import { parseTime, pickerOptions, getArrByKey } from '@/utils'
-import blogForm from './blog/form'
+import { pickerOptions, getArrByKey } from '@/utils'
+import detailForm from './blog/form'
 import openWindow from '@/utils/open-window'
 
 export default {
   name: 'Blog',
-  components: { blogForm },
+  components: { detailForm },
   directives: {
     waves
   },
@@ -162,7 +154,6 @@ export default {
         status: '-1',
         title: '',
         cate_id: '',
-        column_id: '',
         start_time: '',
         end_time: ''
       },
@@ -202,7 +193,6 @@ export default {
         status: '-1',
         title: '',
         cate_id: '',
-        column_id: '',
         start_time: '',
         end_time: ''
       }
@@ -219,6 +209,7 @@ export default {
     },
     handleModifyStatus(index, id, status) {
       this.list[index]['status'] = 1 - status
+      // eslint-disable-next-line no-unused-vars
       change(id, 'status', 1 - status).then(response => {})
     },
     handleSelectionChange(val) {
@@ -233,11 +224,11 @@ export default {
       openWindow(img, '图片预览', '500', '400')
     },
     handleCreate() {
-      this.$refs.fromBlog.handleCreate()
+      this.$refs.fromDetail.handleCreate()
     },
     handleUpdate(index, id) {
       this.currentIndex = index
-      this.$refs.fromBlog.handleUpdate(id)
+      this.$refs.fromDetail.handleUpdate(id)
     },
     updateRow(temp) {
       if (this.currentIndex >= 0 && temp.id > 0) {
@@ -268,7 +259,7 @@ export default {
             _this.$notify.error(response.msg)
           }
           _this.$set(_this.list[index], 'delete', false)
-        // eslint-disable-next-line handle-callback-err
+        // eslint-disable-next-line no-unused-vars
         }).catch((error) => {
           _this.$set(_this.list[index], 'delete', false)
         })
@@ -293,6 +284,7 @@ export default {
           delAll({ ids: idstr }).then(response => {
             if (response.status === 1) {
               const delindex = []
+              // eslint-disable-next-line no-unused-vars
               _this.list.forEach(function(item, index, input) {
                 if (ids.indexOf(item.id) > -1) {
                   delindex.push(index)
@@ -307,7 +299,7 @@ export default {
               _this.$message.error(response.msg)
             }
             _this.deleting = false
-          // eslint-disable-next-line handle-callback-err
+          // eslint-disable-next-line no-unused-vars
           }).catch((error) => {
             _this.deleting = false
           })
@@ -328,6 +320,7 @@ export default {
         const idstr = ids.join(',')
         changeAll({ val: idstr, field: 'status', value: command }).then(response => {
           if (response.status === 1) {
+            // eslint-disable-next-line no-unused-vars
             _this.list.forEach(function(item, index, input) {
               if (ids.indexOf(item.id) > -1) {
                 _this.list[index]['status'] = command
@@ -337,7 +330,7 @@ export default {
           } else {
             _this.$message.error(response.msg)
           }
-        // eslint-disable-next-line handle-callback-err
+        // eslint-disable-next-line no-unused-vars
         }).catch((error) => {
         })
       } else {

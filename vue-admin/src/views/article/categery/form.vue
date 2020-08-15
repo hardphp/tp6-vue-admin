@@ -13,9 +13,6 @@
 
         <el-tabs tab-position="top" style="height: 200px;">
           <el-tab-pane label="基本信息">
-            <el-form-item label="栏目" prop="column_id">
-              <el-cascader v-model="column_id" :options="getColumnList" :props="props_pid" placeholder="请选择" change-on-select @change="handleChange" />
-            </el-form-item>
             <el-form-item label="名称" prop="name">
               <el-input v-model="temp.name" clearable />
             </el-form-item>
@@ -45,9 +42,7 @@
 </template>
 
 <script>
-import { getListAll } from '@/api/column'
 import { getinfo, save } from '@/api/categery'
-import tree from '@/utils/tree'
 export default {
   name: 'CategeryForm',
   components: { },
@@ -55,11 +50,8 @@ export default {
     return {
       btnLoading: false,
       columns: null,
-      column_id: [],
-      props_pid: { 'label': 'name', 'value': 'id' },
       temp: {
         id: 0,
-        column_id: 0,
         name: '',
         content: '',
         status: 1,
@@ -67,38 +59,31 @@ export default {
       },
       dialogFormVisible: false,
       rules: {
-        column_id: [{ required: true, message: '栏目必选', trigger: 'change' }],
         name: [{ required: true, message: '名称必填', trigger: 'blur' }]
       }
 
     }
   },
   computed: {
-    getColumnList() {
-      if (this.columns) {
-        return tree.listToTreeMulti(this.columns)
-      } else {
-        return null
-      }
-    }
   },
   watch: {
     dialogFormVisible: function() {
       this.resetTemp()
     },
     temp: {
+      // eslint-disable-next-line no-unused-vars
       handler(newVal, oldVal) {},
       immediate: true,
       deep: true
     }
   },
   created() {
-    this.getColumns()
   },
   destroyed() {
 
   },
   methods: {
+    // eslint-disable-next-line no-unused-vars
     handleClose(done) {
       if (this.btnLoading) {
         return
@@ -109,15 +94,9 @@ export default {
         })
         .catch(_ => {})
     },
-    getColumns() {
-      getListAll().then(response => {
-        this.columns = response.data.data
-      })
-    },
     resetTemp() {
       this.temp = {
         id: 0,
-        column_id: 0,
         name: '',
         content: '',
         status: 1,
@@ -139,12 +118,9 @@ export default {
       getinfo(id).then(response => {
         if (response.status === 1) {
           _this.temp.id = response.data.id
-          _this.temp.column_id = response.data.column_id
           _this.temp.name = response.data.name
           _this.temp.content = response.data.content
           _this.temp.status = response.data.status
-          _this.column_id = tree.getParentsId(this.columns, response.data.column_id)
-          _this.column_id.push(response.data.column_id)
         }
       })
       this.$nextTick(() => {
@@ -176,11 +152,6 @@ export default {
           this.btnLoading = false
         }
       })
-    },
-    handleChange(value) {
-      if (value.length) {
-        this.temp.column_id = value[value.length - 1]
-      }
     }
   }
 }

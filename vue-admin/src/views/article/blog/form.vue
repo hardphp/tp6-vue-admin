@@ -13,10 +13,6 @@
 
         <el-tabs tab-position="top" style="height: 200px;">
           <el-tab-pane label="基本信息">
-
-            <el-form-item label="栏目" prop="column_id">
-              <el-cascader v-model="column_id" :options="getColumnList" :props="props_pid" placeholder="请选择" change-on-select @change="handleChange" />
-            </el-form-item>
             <el-form-item label="分类" prop="cate_id">
               <el-select v-model="temp.cate_id" class="filter-item" placeholder="请选择">
                 <el-option v-for="item in cates" :key="item.id" :label="item.name" :value="item.id" />
@@ -57,12 +53,10 @@
 
 <script>
 import Uploadone from '@/components/Upload/singleImage'
-import { getListAll } from '@/api/column'
 import { getListAll as getListAllCate } from '@/api/categery'
 import { getinfo, save } from '@/api/blog'
 import myconfig from '@/settings.js'
 import { getToken } from '@/utils/auth'
-import tree from '@/utils/tree'
 
 export default {
   name: 'BlogForm',
@@ -70,13 +64,9 @@ export default {
   data() {
     return {
       btnLoading: false,
-      columns: null,
-      column_id: [],
-      props_pid: { 'label': 'name', 'value': 'id' },
       cates: null,
       temp: {
         id: 0,
-        column_id: '',
         cate_id: '',
         title: '',
         content: '',
@@ -97,7 +87,6 @@ export default {
       },
       dialogFormVisible: false,
       rules: {
-        column_id: [{ required: true, message: '栏目必选', trigger: 'change' }],
         cate_id: [{ required: true, message: '分类必选', trigger: 'change' }],
         title: [{ required: true, message: '标题必填', trigger: 'blur' }],
         content: [{ required: true, message: '详情必填', trigger: 'blur' }]
@@ -106,32 +95,26 @@ export default {
     }
   },
   computed: {
-    getColumnList() {
-      if (this.columns) {
-        return tree.listToTreeMulti(this.columns)
-      } else {
-        return null
-      }
-    }
   },
   watch: {
     dialogFormVisible: function() {
       this.resetTemp()
     },
     temp: {
+      // eslint-disable-next-line no-unused-vars
       handler(newVal, oldVal) {},
       immediate: true,
       deep: true
     }
   },
   created() {
-    this.getColumns()
     this.getCates()
   },
   destroyed() {
 
   },
   methods: {
+    // eslint-disable-next-line no-unused-vars
     handleClose(done) {
       if (this.btnLoading) {
         return
@@ -142,11 +125,6 @@ export default {
         })
         .catch(_ => {})
     },
-    getColumns() {
-      getListAll().then(response => {
-        this.columns = response.data.data
-      })
-    },
     getCates() {
       getListAllCate().then(response => {
         this.cates = response.data.data
@@ -155,7 +133,6 @@ export default {
     resetTemp() {
       this.temp = {
         id: 0,
-        column_id: '',
         cate_id: '',
         title: '',
         content: '',
@@ -179,15 +156,12 @@ export default {
       getinfo(id).then(response => {
         if (response.status === 1) {
           _this.temp.id = response.data.id
-          _this.temp.column_id = response.data.column_id
           _this.temp.cate_id = response.data.cate_id
           _this.temp.title = response.data.title
           _this.temp.content = response.data.content
           _this.temp.status = response.data.status
           _this.temp.sorts = response.data.sorts
           _this.temp.img = response.data.img
-          _this.column_id = tree.getParentsId(this.columns, response.data.column_id)
-          _this.column_id.push(response.data.column_id)
         }
       })
       this.$nextTick(() => {
@@ -219,11 +193,6 @@ export default {
           this.btnLoading = false
         }
       })
-    },
-    handleChange(value) {
-      if (value.length) {
-        this.temp.column_id = value[value.length - 1]
-      }
     }
   }
 }

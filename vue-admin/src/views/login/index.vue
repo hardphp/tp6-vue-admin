@@ -41,6 +41,24 @@
         </span>
       </el-form-item>
 
+      <el-form-item prop="code">
+        <span class="svg-container">
+          <svg-icon icon-class="message" />
+        </span>
+        <el-input
+          ref="code"
+          v-model="loginForm.code"
+          type="text"
+          placeholder="验证码"
+          name="code"
+          tabindex="3"
+          autocomplete="ff"
+        />
+        <span class="code-img" >
+          <img @click="updatecode" :src="img"/>
+        </span>
+      </el-form-item>
+
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登录</el-button>
 
     </el-form>
@@ -50,6 +68,10 @@
 
 <script>
 import { validUsername, validPassword } from '@/utils/validate'
+import { Loading } from 'element-ui'
+import { captcha } from '@/api/user'
+
+let loadingInstance = Loading.service();
 
 export default {
   name: 'Login',
@@ -72,16 +94,20 @@ export default {
     return {
       loginForm: {
         username: '',
-        password: ''
+        password: '',
+        code:'',
+        key:''
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+        password: [{ required: true, trigger: 'blur', validator: validatePassword }],
+        code: [{ required: true, trigger: 'blur' }]
       },
       passwordType: 'password',
       loading: false,
       redirect: undefined,
-      otherQuery: {}
+      otherQuery: {},
+      img:''
     }
   },
   watch: {
@@ -97,7 +123,8 @@ export default {
     }
   },
   created() {
-
+    loadingInstance.close()
+    this.getCaptcha()
   },
   mounted() {
     if (this.loginForm.username === '') {
@@ -110,6 +137,12 @@ export default {
 
   },
   methods: {
+    getCaptcha(){
+      captcha().then(response => {
+        this.img = response.data.img
+        this.loginForm.key = response.data.key
+    })
+    },
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''
@@ -119,6 +152,9 @@ export default {
       this.$nextTick(() => {
         this.$refs.password.focus()
       })
+    },
+    updatecode(){
+        this.getCaptcha()
     },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
@@ -257,6 +293,17 @@ $light_gray:#eee;
     user-select: none;
   }
 
+  .code-img {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    cursor: pointer;
+    user-select: none;
+    height:47px;
+  }
+  .code-img img{
+    height: 47px;
+  }
   .thirdparty-button {
     position: absolute;
     right: 0;

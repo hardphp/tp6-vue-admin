@@ -27,8 +27,8 @@ return [
             'accessId'     => '',
             'accessSecret' => '',
             'bucket'       => '',
-            'endpoint'     => 'oss-cn-beijing.aliyuncs.com',
-            'url'          => 'https://oss-cn-beijing.aliyuncs.com',//不要斜杠结尾，此处为URL地址域名。
+            'endpoint'     => '',
+            'url'          => '',//不要斜杠结尾，此处为URL地址域名。
             'process'      => [],//图片处理器
         ]
 

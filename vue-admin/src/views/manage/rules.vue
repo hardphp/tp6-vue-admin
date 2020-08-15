@@ -78,7 +78,7 @@
     </tree-table>
 
     <!-- 表单 -->
-    <rulesForm ref="fromRules" :rule-list="list" @updateRow="updateRow" />
+    <detailForm ref="fromDetail" :rule-list="list" @updateRow="updateRow" />
 
   </div>
 </template>
@@ -88,12 +88,12 @@ import { getList, del, change, delAll, changeAll } from '@/api/rules'
 import waves from '@/directive/waves' // 水波纹指令
 import { getArrByKey } from '@/utils'
 import tree from '@/utils/tree'
-import rulesForm from './rules/form'
+import detailForm from './rules/form'
 import treeTable from '@/components/TreeTable'
 
 export default {
   name: 'Rules',
-  components: { rulesForm, treeTable },
+  components: { detailForm, treeTable },
   directives: {
     waves
   },
@@ -161,10 +161,10 @@ export default {
       this.selectedRows = val
     },
     handleCreate() {
-      this.$refs.fromRules.handleCreate()
+      this.$refs.fromDetail.handleCreate()
     },
     handleUpdate(index, id) {
-      this.$refs.fromRules.handleUpdate(id)
+      this.$refs.fromDetail.handleUpdate(id)
     },
     handleModifyStatus(index, id, status) {
       const statusObj = { 'status': 1 - status }

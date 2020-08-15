@@ -14,7 +14,7 @@
         <el-tabs tab-position="top" style="height: 200px;">
           <el-tab-pane label="基本信息">
             <el-form-item label="上级" prop="pid">
-              <el-cascader v-model="pid" :options="getRulesList" :props="props_pid" placeholder="请选择" change-on-select @change="handleChange" />
+              <el-cascader v-model="pid" :options="getRulesList" :props="props_pid"  filterable=true placeholder="请选择" change-on-select @change="handleChange" />
             </el-form-item>
             <el-form-item label="名称" prop="title">
               <el-input v-model="temp.title" clearable />
@@ -187,7 +187,10 @@ export default {
           _this.temp.no_cache = response.data.no_cache
           _this.temp.always_show = response.data.always_show
           _this.temp.redirect = response.data.redirect
-          _this.pid = tree.getParentsId(this.ruleList, id)
+          _this.pid = tree.getParentsId(_this.ruleList, id)
+          console.log(_this.ruleList)
+          console.log(_this.pid)
+          console.log('===============')
         }
       })
       this.$nextTick(() => {

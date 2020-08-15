@@ -12,7 +12,7 @@
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="70px" style="width: 100%; padding:10px; height: 100vh;overflow-y: scroll;">
 
         <el-tabs tab-position="top" style="height: 200px;">
-          <el-tab-pane label="基本信息">
+          <el-tab-pane tabIndex=-1 label="基本信息">
             <el-form-item label="角色" prop="group_id">
               <el-select v-model="temp.group_id" class="filter-item" placeholder="请选择">
                 <el-option v-for="item in roles" :key="item.id" :label="item.title" :value="item.id" />
@@ -22,7 +22,7 @@
               <el-input v-model="temp.username" clearable />
             </el-form-item>
             <el-form-item label="密码" prop="password">
-              <el-input v-model="temp.password" clearable />
+              <el-input v-model="temp.password" clearable placeholder="不修改则留空" />
             </el-form-item>
             <el-form-item label="头像" prop="img">
               <Uploadone v-model="temp.img" :config="config" :header="header" />

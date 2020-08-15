@@ -46,12 +46,12 @@
       highlight-current-row
       style="width: 100%;"
     >
-      <el-table-column label="ID" align="center" width="100">
+      <el-table-column label="ID" align="center" width="180">
         <template slot-scope="scope">
           <span>{{ scope.row.id }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="用户ID" width="100px">
+      <el-table-column label="用户ID" width="180px">
         <template slot-scope="scope">
           <span>{{ scope.row.uid }}</span>
         </template>
@@ -73,7 +73,7 @@
       </el-table-column>
       <el-table-column label="登录时间" width="160px" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.login_time|parseTime('{y}-{m}-{d} {h}:{i}:{s}') }}</span>
+          <span>{{ scope.row.login_time|formTime('{y}-{m}-{d} {h}:{i}:{s}') }}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -97,6 +97,9 @@ export default {
     waves
   },
   filters: {
+    formTime(format){
+      return parseTime(format)
+    }
   },
   data() {
     return {

@@ -26,7 +26,8 @@
         "aliyuncs/oss-sdk-php": "^2.3",
         "topthink/think-throttle": "^1.0",
         "hardphp/thinkphp-filesystem": "^1.0",
-        "hardphp/thinkphp-snowflake": "^0.5.0"
+        "hardphp/thinkphp-snowflake": "^0.5.0",
+        "hardphp/think-captcha": "^0.2.0"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2",
@@ -48,5 +49,11 @@
             "@php think service:discover",
             "@php think vendor:publish"
         ]
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
     }
 }

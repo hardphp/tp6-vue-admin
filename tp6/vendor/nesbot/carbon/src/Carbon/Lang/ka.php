@@ -22,6 +22,7 @@
  * - JD Isaacks
  * - LONGMAN
  * - Avtandil Kikabidze (akalongman)
+ * - Levan Velijanashvili (Stichoza)
  */
 return [
     'year' => ':count წელი',
@@ -114,26 +115,27 @@ return [
     'before' => function ($time) {
         $replacements = [
             // year
-            'წელი' => 'წლის',
+            'წელი' => 'წლით',
             // month
-            'თვე' => 'თვის',
+            'თვე' => 'თვით',
             // week
-            'კვირი' => 'კვირის',
+            'კვირა' => 'კვირით',
             // day
-            'დღე' => 'დღის',
+            'დღე' => 'დღით',
             // hour
-            'საათი' => 'საათის',
+            'საათი' => 'საათით',
             // minute
-            'წუთი' => 'წუთის',
+            'წუთი' => 'წუთით',
             // second
-            'წამი' => 'წამის',
+            'წამი' => 'წამით',
         ];
         $time = strtr($time, array_flip($replacements));
         $time = strtr($time, $replacements);
 
-        return "$time უკან";
+        return "$time ადრე";
     },
     'diff_now' => 'ახლა',
+    'diff_today' => 'დღეს',
     'diff_yesterday' => 'გუშინ',
     'diff_tomorrow' => 'ხვალ',
     'formats' => [

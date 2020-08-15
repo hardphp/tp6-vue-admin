@@ -59,7 +59,7 @@ export default {
   },
   data() {
     return {
-      limit: this.config.limit,
+      limit: 1,
       fileName: this.config.fileName,
       multiple: this.config.multiple,
       accept: this.config.accept,
@@ -143,14 +143,16 @@ export default {
 </script>
 <style rel="stylesheet/scss" lang="scss">
 	.image-uploader {
+    height: 80px;
+    overflow: hidden;
 		.el-upload {
 			border: 1px dashed #d9d9d9;
 			border-radius: 6px;
 			cursor: pointer;
 			position: relative;
 			overflow: hidden;
-			width: 160px;
-			height: 160px;
+			width: 80px;
+			height: 80px;
 			.el-upload-dragger{
 				height: 100%;
 			}
@@ -159,20 +161,20 @@ export default {
 			}
 		}
 		.el-upload-list__item{
-			width: 160px;
-			height: 160px;
+			width: 80px;
+			height: 80px;
 		}
 		.image {
-			width: 178px;
-			height: 178px;
+			width: 80px;
+			height: 80px;
 			display: block;
 		}
-		.image-uploader-icon {
+		.el-upload--picture-card {
 			font-size: 28px;
 			color: #8c939d;
-			width: 178px;
-			height: 178px;
-			line-height: 178px;
+			width: 80px;
+			height: 80px;
+      line-height:85px;
 			text-align: center;
 		}
 

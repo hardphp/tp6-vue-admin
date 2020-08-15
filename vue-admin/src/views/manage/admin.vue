@@ -119,7 +119,7 @@
       </el-table-column>
       <el-table-column label="登录时间" width="160px" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.login_time|parseTime('{y}-{m}-{d} {h}:{i}:{s}') }}</span>
+          <span>{{ scope.row.login_time|formTime('{y}-{m}-{d} {h}:{i}:{s}') }}</span>
         </template>
       </el-table-column>
       <el-table-column label="注册IP" width="120px" align="center">
@@ -150,7 +150,7 @@
     </div>
 
     <!-- 表单 -->
-    <adminForm ref="fromAdmin" @updateRow="updateRow" />
+    <detailForm ref="fromDetail" @updateRow="updateRow" />
 
   </div>
 </template>
@@ -158,14 +158,13 @@
 <script>
 import { getList, del, change, delAll, changeAll } from '@/api/user'
 import waves from '@/directive/waves'
-// eslint-disable-next-line no-unused-vars
 import { parseTime, pickerOptions, getArrByKey } from '@/utils'
-import adminForm from './admin/form'
+import detailForm from './admin/form'
 import openWindow from '@/utils/open-window'
 
 export default {
   name: 'Admin',
-  components: { adminForm },
+  components: { detailForm },
   directives: {
     waves
   },
@@ -176,6 +175,9 @@ export default {
         1: '正常'
       }
       return statusMap[status]
+    },
+    formTime(format){
+      return parseTime(format)
     }
   },
   data() {
@@ -263,11 +265,11 @@ export default {
       openWindow(img, '图片预览', '500', '400')
     },
     handleCreate() {
-      this.$refs.fromAdmin.handleCreate()
+      this.$refs.fromDetail.handleCreate()
     },
     handleUpdate(index, id) {
       this.currentIndex = index
-      this.$refs.fromAdmin.handleUpdate(id)
+      this.$refs.fromDetail.handleUpdate(id)
     },
     updateRow(temp) {
       if (this.currentIndex >= 0 && temp.id > 0) {
@@ -369,6 +371,7 @@ export default {
           }
         // eslint-disable-next-line handle-callback-err
         }).catch((error) => {
+          console.log(error)
         })
       } else {
         _this.$message.error('请选择要操作的数据')

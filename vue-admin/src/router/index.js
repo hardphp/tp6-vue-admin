@@ -6,8 +6,6 @@ Vue.use(Router)
 /* Layout */
 import Layout from '@/layout'
 
-/* Router Modules */
-
 /**
  * Note: sub-menu only appear when route children.length >= 1
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -21,19 +19,14 @@ import Layout from '@/layout'
  * meta : {
     roles: ['admin','editor']    control the page roles (you can set multiple roles)
     title: 'title'               the name show in sidebar and breadcrumb (recommend set)
-    icon: 'svg-name'             the icon show in the sidebar
+    icon: 'svg-name'/'el-icon-x' the icon show in the sidebar
     noCache: true                if set true, the page will no be cached(default is false)
     affix: true                  if set true, the tag will affix in the tags-view
     breadcrumb: false            if set false, the item will hidden in breadcrumb(default is true)
     activeMenu: '/example/list'  if set path, the sidebar will highlight the path you set
   }
  */
-
-/**
- * constantRoutes
- * a base page that does not have permission requirements
- * all roles can be accessed
- */
+//静态路由
 export const constantRoutes = [
   {
     path: '/redirect',
@@ -49,16 +42,6 @@ export const constantRoutes = [
   {
     path: '/login',
     component: () => import('@/views/login/index'),
-    hidden: true
-  },
-  {
-    path: '/404',
-    component: () => import('@/views/error-page/404'),
-    hidden: true
-  },
-  {
-    path: '/401',
-    component: () => import('@/views/error-page/401'),
     hidden: true
   },
   {
@@ -87,7 +70,15 @@ export const constantRoutes = [
       }
     ]
   }
+  
 ]
+
+//https://blog.csdn.net/weixin_45522694/article/details/99548714
+//vue-router ≥3.0版本回调形式以及改成promise api的形式了，返回的是一个promise，如果路由地址跳转相同, 且没有捕获到错误，控制台始终会出现如图所示的警告
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support

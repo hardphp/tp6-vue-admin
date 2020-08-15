@@ -49,7 +49,10 @@ class ChainAdapter implements AdapterInterface, CacheInterface, PruneableInterfa
 
         foreach ($adapters as $adapter) {
             if (!$adapter instanceof CacheItemPoolInterface) {
-                throw new InvalidArgumentException(sprintf('The class "%s" does not implement the "%s" interface.', \get_class($adapter), CacheItemPoolInterface::class));
+                throw new InvalidArgumentException(sprintf('The class "%s" does not implement the "%s" interface.', get_debug_type($adapter), CacheItemPoolInterface::class));
+            }
+            if (\in_array(\PHP_SAPI, ['cli', 'phpdbg'], true) && $adapter instanceof ApcuAdapter && !filter_var(ini_get('apc.enable_cli'), FILTER_VALIDATE_BOOLEAN)) {
+                continue; // skip putting APCu in the chain when the backend is disabled
             }
 
             if ($adapter instanceof AdapterInterface) {
@@ -67,15 +70,11 @@ class ChainAdapter implements AdapterInterface, CacheInterface, PruneableInterfa
                 unset($sourceMetadata[CacheItem::METADATA_TAGS]);
 
                 $item->value = $sourceItem->value;
-                $item->expiry = $sourceMetadata[CacheItem::METADATA_EXPIRY] ?? $sourceItem->expiry;
                 $item->isHit = $sourceItem->isHit;
                 $item->metadata = $item->newMetadata = $sourceItem->metadata = $sourceMetadata;
 
-                if (0 < $sourceItem->defaultLifetime && $sourceItem->defaultLifetime < $defaultLifetime) {
-                    $defaultLifetime = $sourceItem->defaultLifetime;
-                }
-                if (0 < $defaultLifetime && ($item->defaultLifetime <= 0 || $defaultLifetime < $item->defaultLifetime)) {
-                    $item->defaultLifetime = $defaultLifetime;
+                if (0 < $defaultLifetime) {
+                    $item->expiresAfter($defaultLifetime);
                 }
 
                 return $item;
