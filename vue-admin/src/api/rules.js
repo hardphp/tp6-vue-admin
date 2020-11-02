@@ -19,7 +19,7 @@ export function getinfo(id) {
   return request({
     url: '/admin/rules/getinfo',
     method: 'post',
-    params: { id }
+    data: { id }
   })
 }
 
@@ -35,7 +35,7 @@ export function del(id) {
   return request({
     url: '/admin/rules/del',
     method: 'post',
-    params: { id }
+    data: { id }
   })
 }
 

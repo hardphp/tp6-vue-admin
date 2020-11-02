@@ -19,7 +19,7 @@ export function getinfo(id) {
   return request({
     url: '/admin/articlecategery/getinfo',
     method: 'post',
-    params: { id }
+    data: { id }
   })
 }
 
@@ -35,7 +35,7 @@ export function del(id) {
   return request({
     url: '/admin/articlecategery/del',
     method: 'post',
-    params: { id }
+    data: { id }
   })
 }
 

@@ -34,7 +34,7 @@ export function getinfo(id) {
   return request({
     url: '/admin/admin/getinfo',
     method: 'post',
-    params: { id }
+    data: { id }
   })
 }
 
@@ -58,7 +58,7 @@ export function del(id) {
   return request({
     url: '/admin/admin/del',
     method: 'post',
-    params: { id }
+    data: { id }
   })
 }
 
