@@ -1,0 +1,59 @@
+﻿
+邮箱地址：asiatata@VIP.163.com 替换掉之前的tatamatch@VIP.163.com 
+
+1、客户注册成功后的确认邮件：（替换掉之前的文案）
+中文：
+标题：欢迎加入Asiatata
+主体：
+亲爱的**（客户的用户名）：
+感谢您对Asiatata的使用和支持，您的账户已经被确认。你可以登陆网站来上传照片和完善你的个人资料，你必须上传真实的照片，让我们一起创造真实、健康、绿色的交友环境。生命如此短暂的，让我们享受每一天的乐趣！
+谢谢你的时间和保重!
+Asiatata.com
+
+英文：
+标题：欢迎加入Asiatata
+主体：
+Dear** (客户的用户名):
+Thank you for your use and support of Asiatata. Your account has been confirmed. You can log in to the website to upload photos and improve your personal information, you must upload real photos, let us create a real, healthy and green environment for making friends together. Life is so short, let us enjoy the fun every day!
+Thank you for your time and take care!
+Asiatata.com
+
+
+
+
+
+
+2、客户发送卡片礼物提醒邮件(只需要把之前文案中的TataMatch修改为Asiatata即可)
+中文：
+标题：你收到一个礼物
+主体：
+亲爱的***（收礼物人的用户名）
+***(发送人用户名)送你一个礼物，快登陆你的Asiatata账户查看吧 
+谢谢你的时间和照顾
+Asiatata
+
+英文：
+标题：You receive a gift
+内容：
+Dear *** (收礼物人的用户名)
+***(sender username) send you a gift,Please Login to your Asiatata account and check it .
+Thank you for your time and care
+Asiatata
+
+3、客户发送真实礼物提醒邮件(只需要把之前文案中的TataMatch修改为Asiatata即可)
+中文：
+标题：你收到一个礼物
+主体：
+亲爱的***（收礼物人的用户名）
+***(发送人用户名)送你一个礼物：*****（礼物名字），快登陆你的Asiatata账户查看吧 
+谢谢你的时间和照顾
+Asiatata
+
+
+英文：
+标题：You receive a gift
+内容：
+Dear *** (收礼物人的用户名)
+***(sender username) send you a gift：*****(礼物名字),Please Login to your Asiatata account and check it .
+Thank you for your time and care
+Asiatata

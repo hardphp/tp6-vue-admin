@@ -24,11 +24,11 @@ return [
         // 更多的磁盘配置信息
         'aliyun' => [
             'type'         => 'aliyun',
-            'accessId'     => '',
-            'accessSecret' => '',
-            'bucket'       => '',
-            'endpoint'     => '',
-            'url'          => '',//不要斜杠结尾，此处为URL地址域名。
+            'accessId'     => 'SKFy1jm8nlnf8zbk',
+            'accessSecret' => 'WJFd4g1avjjUyoaDUxWt22n8rfaCnh',
+            'bucket'       => 'hardphp',
+            'endpoint'     => 'oss-cn-beijing.aliyuncs.com',
+            'url'          => 'https://hardphp.oss-cn-beijing.aliyuncs.com',//不要斜杠结尾，此处为URL地址域名。
             'process'      => [],//图片处理器
         ]
 

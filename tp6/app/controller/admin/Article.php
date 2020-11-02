@@ -5,10 +5,8 @@ namespace app\controller\admin;
 
 use app\controller\admin\Base;
 use app\traits\ControllerTrait;
-use think\annotation\route\Middleware;
 use think\annotation\route\Group;
 use think\annotation\Route;
-use app\middleware\CheckAdmin;
 
 /**
  * 文章管理
@@ -16,7 +14,6 @@ use app\middleware\CheckAdmin;
  * @package app\controller\admin
  * @author  2066362155@qq.com
  * @Group("admin/article")
- * @Middleware({CheckAdmin::class})
  */
 class Article extends Base
 {

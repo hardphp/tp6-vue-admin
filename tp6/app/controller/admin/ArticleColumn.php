@@ -5,18 +5,14 @@ namespace app\controller\admin;
 
 use app\controller\admin\Base;
 use app\traits\ControllerTrait;
-use think\annotation\route\Middleware;
 use think\annotation\route\Group;
 use think\annotation\Route;
-use app\middleware\CheckAdmin;
-
 /**
  * 文章栏目管理
  * Class ArticleColumn
  * @package app\controller\admin
  * @author  2066362155@qq.com
  * @Group("admin/articlecolumn")
- * @Middleware({CheckAdmin::class})
  */
 class ArticleColumn extends Base
 {

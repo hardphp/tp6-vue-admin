@@ -7,10 +7,8 @@ use app\controller\admin\Base;
 use app\service\AuthGroupService;
 use app\service\AuthRuleService;
 use app\traits\ControllerTrait;
-use think\annotation\route\Middleware;
 use think\annotation\route\Group;
 use think\annotation\Route;
-use app\middleware\CheckAdmin;
 use app\util\TreeUtil;
 
 /**
@@ -19,7 +17,6 @@ use app\util\TreeUtil;
  * @package app\controller\admin
  * @author  2066362155@qq.com
  * @Group("admin/admin")
- * @Middleware({CheckAdmin::class})
  */
 class Admin extends Base
 {

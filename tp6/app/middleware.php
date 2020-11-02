@@ -9,5 +9,5 @@ return [
     // \think\middleware\SessionInit::class
     //\think\middleware\Throttle::class,
     // 签名验证
-    //app\middleware\CheckSign::class,
+    app\middleware\CheckSign::class,
 ];

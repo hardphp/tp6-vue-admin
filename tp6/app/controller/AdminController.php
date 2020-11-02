@@ -3,6 +3,7 @@ declare (strict_types=1);
 namespace app\controller;
 
 use app\BaseController;
+use app\service\AdminService;
 
 /**
  * 管理端基类
@@ -18,10 +19,11 @@ class AdminController extends BaseController
     // 初始化
     protected function initialize()
     {
-        $this->user = $this->request->sys_user;
+        $user = AdminService::checkAdmin($this->request->header('x-access-token'));
+        $this->user = $user['user'];
         //权限验证,1=超级管理员，放行 TODO
         if ($this->user->group_id !== 1) {
-
+            
         }
     }
 

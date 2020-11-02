@@ -1,11 +1,10 @@
 # PhpDocReader
 
-[![Build Status](https://img.shields.io/travis/PHP-DI/PhpDocReader.svg)](https://travis-ci.org/mnapoli/PhpDocReader)
 ![](https://img.shields.io/packagist/dt/PHP-DI/phpdoc-reader.svg)
 
 This project is used by:
 
-- [PHP-DI](http://php-di.org/)
+- [PHP-DI 6](http://php-di.org/)
 - [phockito-unit-php-di](https://github.com/balihoo/phockito-unit-php-di)
 
 Fork the README to add your project here.

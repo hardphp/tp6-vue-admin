@@ -110,6 +110,7 @@ trait ControllerTrait
      */
     public function save()
     {
+		return json_error(10005);
         $id = input('id', '0', 'int');
         //接收数据
         $data     = $this->beforeSave($id);
@@ -142,6 +143,7 @@ trait ControllerTrait
      */
     public function del()
     {
+		return json_error(10005);
         $id = input('id', '0', 'int');
         if ($id == 0) {
             return json_error(10004);
@@ -160,6 +162,7 @@ trait ControllerTrait
      */
     public function delall()
     {
+		return json_error(10005);
         $ids = input('ids', '', 'trim');
         if (empty($ids)) {
             return json_error(10004);
@@ -176,6 +179,7 @@ trait ControllerTrait
      */
     public function change()
     {
+		return json_error(10005);
         $val   = input('val', '', 'int');
         $field = input('field', '', 'trim');
         $value = input('value', '', 'int');
@@ -204,7 +208,8 @@ trait ControllerTrait
      * @Route("changeall", method="POST")
      */
     public function changeall()
-    {
+    {	
+		return json_error(10005);
         $val   = input('val', '', 'trim');
         $field = input('field', '', 'trim');
         $value = input('value', '', 'int');
