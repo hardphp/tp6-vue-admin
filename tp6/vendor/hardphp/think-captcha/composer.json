@@ -1,0 +1,33 @@
+{
+    "name": "hardphp/think-captcha",
+    "description": "captcha package for thinkphp，前后端分离，api接口调用",
+    "authors": [
+        {
+            "name": "hardphp",
+            "email": "2066362155@qq.com"
+        }
+    ],
+    "license": "Apache-2.0",
+    "require": {
+		"php": ">=7.1.0",
+        "topthink/framework": "^6.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "hardphp\\captcha\\": "src/"
+        },
+        "files": [
+            "src/helper.php"
+        ]
+    },
+    "extra": {
+        "think": {
+            "services": [
+                "hardphp\\captcha\\CaptchaService"
+            ],
+            "config":{
+                "captcha": "src/config.php"
+            }
+        }
+    }
+}
