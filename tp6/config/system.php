@@ -24,8 +24,8 @@ return [
     //小程序配置
     'wechat_mini'           => [
 
-        'app_id'        => 'wxd8a482ca4ad05dde',
-        'secret'        => '0e35ece9c9922148b78eefc783f7138a',
+        'app_id'        => '',
+        'secret'        => '',
 
         // 下面为可选项
         // 指定 API 调用返回结果的类型：array(default)/collection/object/raw/自定义类名
@@ -39,12 +39,12 @@ return [
     //短信配置
     'sms'                   => [
         'info' => [
-            'send_url'    => 'http://api.mix2.zthysms.com/v2/sendSms',
-            'send_tp_url' => 'http://api.mix2.zthysms.com/v2/sendSmsTp',
-            'username'    => 'kamenghy',
-            'password'    => 'S2Y3lN5e',
+            'send_url'    => '',
+            'send_tp_url' => '',
+            'username'    => '',
+            'password'    => '',
         ],
         //模板
-        'con'  => '【咖盟】您的验证码为：@，有效时间10分钟'
+        'con'  => '【XX】您的验证码为：@，有效时间10分钟'
     ],
 ];
