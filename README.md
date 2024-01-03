@@ -1,3 +1,28 @@
+
+本项目停止维护，转新项目
+
+程序员接单神器---HardAdmin前后端分离框架
+
+基于thinkphp6+vue3+ element plus 框架， 可用于企业开发的前后端分离解决方案
+
+ 预览地址：http://test.hardphp.com/HardAdmin/
+admin，123456
+
+仓库地址：https://gitee.com/hardphp/HardAdmin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #thinkphp6+vue2.6+element2.13 前后端分离落地解决方案
 
 # 第一、前端安装运行指南
